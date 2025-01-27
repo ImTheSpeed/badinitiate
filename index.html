@@ -20,22 +20,22 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center; /* Centers the content vertically */
+            justify-content: flex-start; /* Align content to the top */
         }
 
         .header {
             background: white;
-            padding: 1rem; /* Adjust padding for better responsiveness */
+            padding: 1rem;
             box-shadow: 0 2px 4px rgba(0,0,0,0.05);
             display: flex;
             align-items: center;
             justify-content: space-between;
             position: relative;
-            width: 90%;
+            width: 100%;
             max-width: 1200px;
             border-radius: 12px;
-            margin-top: 20px; /* Reduced margin for less space */
-            flex-wrap: nowrap; /* Keeps items on the same line */
+            margin-top: 10px;
+            flex-wrap: nowrap;
         }
 
         .logo-container {
@@ -54,18 +54,18 @@
         .logo-container h1 {
             font-size: 1.5rem;
             font-weight: 600;
-            line-height: 1.2; /* Adjust spacing for "Realm" below "Galala University" */
+            line-height: 1.2;
         }
 
         .logo-container h1 span {
-            display: block; /* Makes "Realm" appear below "Galala University" */
+            display: block;
         }
 
         .nav-buttons {
             display: flex;
-            gap: 0.5rem; /* Adjust spacing for better alignment */
-            flex-wrap: nowrap; /* Prevent wrapping to new lines */
-            justify-content: flex-end; /* Aligns buttons to the right of the header */
+            gap: 0.5rem;
+            flex-wrap: nowrap;
+            justify-content: flex-end;
         }
 
         .nav-link {
@@ -79,7 +79,7 @@
             cursor: pointer;
             font-size: 0.95rem;
             font-weight: 500;
-            transition: all 0.2s ease;
+            transition: all 0.3s ease;
             background: #e0e0e0;
             color: #424242;
         }
@@ -89,17 +89,22 @@
             color: white;
         }
 
+        .nav-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
         .main-content {
             margin-top: 20px; /* Reduced space between header and main content */
             width: 90%;
             max-width: 1200px;
             padding: 1rem;
             flex: 1;
-            text-align: center; /* Centers the content horizontally */
+            text-align: center;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center; /* Centers content vertically within the available space */
+            justify-content: flex-start; /* Align content to the top */
         }
 
         .search-container {
@@ -114,7 +119,8 @@
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.05);
             margin-bottom: 1rem;
-            padding: 0.5rem;
+            align-items: center;
+            overflow: hidden; /* Ensures no space between input and button */
         }
 
         .search-icon {
@@ -126,7 +132,7 @@
 
         .search-input {
             flex: 1;
-            padding: 0.75rem 0;
+            padding: 0.75rem;
             border: none;
             font-size: 1rem;
             color: #333;
@@ -142,16 +148,17 @@
             background: #1a237e;
             color: white;
             border: none;
-            border-radius: 6px;
             cursor: pointer;
             font-size: 0.95rem;
             font-weight: 500;
-            transition: background 0.2s ease;
-            margin-left: 0.5rem;
+            transition: background 0.3s ease, transform 0.3s ease;
+            white-space: nowrap; /* Prevents button text from wrapping */
         }
 
         .search-button:hover {
             background: #283593;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .result-container {
@@ -162,10 +169,12 @@
             font-size: 1.1rem;
             color: #1a237e;
             font-weight: 500;
+            text-align: left;
+            width: 100%;
         }
 
         .map-container {
-            margin-top: 2rem;
+            margin-top: 1rem; /* Reduced space between content and map */
             width: 100%;
             border-radius: 12px;
             overflow: hidden;
@@ -175,13 +184,13 @@
         .map-container img {
             width: 100%;
             height: auto;
-            max-height: 60vh; /* Prevents the map from becoming too tall */
+            max-height: 60vh;
         }
 
         .map-title {
             text-align: center;
             color: #666;
-            margin-top: 1rem;
+            margin-top: 0.5rem; /* Reduced space */
             font-size: 1.1rem;
             font-weight: 400;
             letter-spacing: 0.5px;
@@ -189,38 +198,38 @@
 
         @media (max-width: 768px) {
             .header {
-                flex-direction: column; /* Stack items vertically on smaller screens */
+                flex-direction: column;
                 padding: 1rem;
-                margin-top: 10px; /* Further reduced margin for smaller screens */
-                gap: 1rem; /* Added gap between logo and nav buttons */
+                margin-top: 10px;
+                gap: 1rem;
             }
 
             .logo-container {
-                justify-content: center; /* Center the logo on smaller screens */
+                justify-content: center;
             }
 
             .nav-buttons {
-                justify-content: center; /* Center navigation buttons on smaller screens */
-                flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
+                justify-content: center;
+                flex-wrap: wrap;
             }
 
             .main-content {
                 width: 100%;
                 padding: 0.5rem;
-                margin-top: 10px; /* Reduced space between header and main content */
+                margin-top: 10px;
             }
 
             .search-box {
-                flex-direction: column;
+                flex-direction: row; /* Keep input and button in one line */
             }
 
             .search-button {
-                width: 100%;
-                margin-top: 0.5rem;
+                width: auto; /* Reset width for mobile */
+                margin-top: 0;
             }
 
             .map-container img {
-                max-height: 40vh; /* Further limit map height on mobile */
+                max-height: 40vh;
             }
         }
     </style>
@@ -262,5 +271,21 @@
             <div class="map-title">GU COLLEGES MAP</div>
         </div>
     </main>
+
+    <script>
+        // JavaScript for dynamic search functionality
+        const searchButton = document.querySelector('.search-button');
+        const searchInput = document.querySelector('.search-input');
+        const resultContainer = document.querySelector('.result-container');
+
+        searchButton.addEventListener('click', () => {
+            const roomCode = searchInput.value.trim();
+            if (roomCode) {
+                resultContainer.textContent = `Your Room is at: ${roomCode}`;
+            } else {
+                resultContainer.textContent = 'Please enter a valid room code.';
+            }
+        });
+    </script>
 </body>
 </html>
