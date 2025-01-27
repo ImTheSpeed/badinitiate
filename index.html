@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Galala University Realm</title>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'DM Sans', sans-serif;
-            font-weight: bold; /* Ensures bold text site-wide */
+            font-weight: 600; /* Bolder font for better readability */
         }
 
         body {
@@ -20,12 +20,12 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: flex-start; /* Align content to the top */
+            justify-content: flex-start;
         }
 
         .header {
             background: white;
-            padding: 1rem;
+            padding: 1.5rem; /* Increased padding */
             box-shadow: 0 2px 4px rgba(0,0,0,0.05);
             display: flex;
             align-items: center;
@@ -34,26 +34,26 @@
             width: 100%;
             max-width: 1200px;
             border-radius: 12px;
-            margin-top: 10px;
+            margin-top: 20px; /* Increased margin */
             flex-wrap: nowrap;
         }
 
         .logo-container {
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 1.5rem; /* Increased gap */
             text-decoration: none;
             color: #1a237e;
         }
 
         .logo {
-            height: 45px;
+            height: 60px; /* Increased logo size */
             width: auto;
         }
 
         .logo-container h1 {
-            font-size: 1.5rem;
-            font-weight: 600;
+            font-size: 1.75rem; /* Larger font size */
+            font-weight: 700; /* Bolder font */
             line-height: 1.2;
         }
 
@@ -63,7 +63,7 @@
 
         .nav-buttons {
             display: flex;
-            gap: 0.5rem;
+            gap: 1rem; /* Increased gap */
             flex-wrap: nowrap;
             justify-content: flex-end;
             align-items: center;
@@ -74,12 +74,12 @@
         }
 
         .nav-button {
-            padding: 0.5rem 1rem;
+            padding: 0.75rem 1.5rem; /* Larger padding */
             border: none;
-            border-radius: 6px;
+            border-radius: 8px; /* Smoother corners */
             cursor: pointer;
-            font-size: 0.9rem;
-            font-weight: 500;
+            font-size: 1rem; /* Larger font size */
+            font-weight: 600; /* Bolder font */
             transition: all 0.3s ease;
             background: #e0e0e0;
             color: #424242;
@@ -96,16 +96,18 @@
         }
 
         .language-button {
-            padding: 0.5rem 1rem;
+            padding: 0.75rem 1.5rem; /* Larger padding */
             border: none;
-            border-radius: 6px;
+            border-radius: 8px; /* Smoother corners */
             cursor: pointer;
-            font-size: 0.9rem;
-            font-weight: 500;
+            font-size: 1rem; /* Larger font size */
+            font-weight: 600; /* Bolder font */
             transition: all 0.3s ease;
             background: #1a237e;
             color: white;
-            margin-right: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem; /* Space between text and flag */
         }
 
         .language-button:hover {
@@ -114,47 +116,52 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
+        .flag-icon {
+            width: 20px; /* Flag size */
+            height: auto;
+        }
+
         .main-content {
-            margin-top: 30px; /* Increased space between header and main content */
+            margin-top: 40px; /* Increased space */
             width: 90%;
             max-width: 1200px;
-            padding: 1rem;
+            padding: 1.5rem; /* Increased padding */
             flex: 1;
             text-align: center;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: flex-start; /* Align content to the top */
+            justify-content: flex-start;
         }
 
         .search-container {
             width: 100%;
-            max-width: 600px;
-            margin-bottom: 1.5rem; /* Increased space below search bar */
+            max-width: 700px; /* Wider search container */
+            margin-bottom: 2rem; /* Increased space */
         }
 
         .search-box {
             display: flex;
             background: white;
-            border-radius: 8px;
+            border-radius: 10px; /* Smoother corners */
             box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem; /* Increased space */
             align-items: center;
-            overflow: hidden; /* Ensures no space between input and button */
+            overflow: hidden;
         }
 
         .search-icon {
             display: flex;
             align-items: center;
-            padding: 0 0.75rem;
+            padding: 0 1rem; /* Increased padding */
             color: #666;
         }
 
         .search-input {
             flex: 1;
-            padding: 0.5rem;
+            padding: 0.75rem; /* Larger padding */
             border: none;
-            font-size: 0.9rem;
+            font-size: 1rem; /* Larger font size */
             color: #333;
             outline: none;
         }
@@ -164,16 +171,16 @@
         }
 
         .search-button {
-            padding: 0.5rem 1rem;
+            padding: 0.75rem 1.5rem; /* Larger padding */
             background: #1a237e;
             color: white;
             border: none;
             cursor: pointer;
-            font-size: 0.9rem;
-            font-weight: 500;
+            font-size: 1rem; /* Larger font size */
+            font-weight: 600; /* Bolder font */
             transition: background 0.3s ease, transform 0.3s ease;
-            white-space: nowrap; /* Prevents button text from wrapping */
-            margin-left: 0.25rem; /* Small space between input and button */
+            white-space: nowrap;
+            margin-left: 0.5rem; /* Increased space */
         }
 
         .search-button:hover {
@@ -184,18 +191,18 @@
 
         .result-container {
             background: white;
-            padding: 1rem 1.5rem;
-            border-radius: 8px;
+            padding: 1.5rem; /* Increased padding */
+            border-radius: 10px; /* Smoother corners */
             box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            font-size: 1.1rem;
+            font-size: 1.25rem; /* Larger font size */
             color: #1a237e;
-            font-weight: 500;
+            font-weight: 600; /* Bolder font */
             text-align: left;
             width: 100%;
         }
 
         .map-container {
-            margin-top: 1rem; /* Reduced space between content and map */
+            margin-top: 1.5rem; /* Increased space */
             width: 100%;
             border-radius: 12px;
             overflow: hidden;
@@ -211,9 +218,9 @@
         .map-title {
             text-align: center;
             color: #666;
-            margin-top: 0.5rem; /* Reduced space */
-            font-size: 1.1rem;
-            font-weight: 400;
+            margin-top: 1rem; /* Increased space */
+            font-size: 1.25rem; /* Larger font size */
+            font-weight: 600; /* Bolder font */
             letter-spacing: 0.5px;
         }
 
@@ -236,16 +243,16 @@
 
             .main-content {
                 width: 100%;
-                padding: 0.5rem;
-                margin-top: 10px;
+                padding: 1rem;
+                margin-top: 20px;
             }
 
             .search-box {
-                flex-direction: row; /* Keep input and button in one line */
+                flex-direction: row;
             }
 
             .search-button {
-                width: auto; /* Reset width for mobile */
+                width: auto;
                 margin-top: 0;
             }
 
@@ -262,7 +269,10 @@
             <h1>Galala University<span>Realm</span></h1>
         </a>
         <nav class="nav-buttons">
-            <button class="language-button" id="language-button">EN</button>
+            <button class="language-button" id="language-button">
+                <span id="language-text">AR</span>
+                <img src="https://flagcdn.com/eg.svg" alt="Egypt Flag" class="flag-icon" id="flag-icon">
+            </button>
             <a href="find-lecture.html" class="nav-link"><button class="nav-button active">Find Lecture</button></a>
             <a href="where-to-eat.html" class="nav-link"><button class="nav-button">Where to Eat</button></a>
             <a href="event-hub.html" class="nav-link"><button class="nav-button">Event Hub</button></a>
@@ -275,7 +285,7 @@
         <div class="search-container">
             <div class="search-box">
                 <div class="search-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="11" cy="11" r="8"></circle>
                         <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                     </svg>
@@ -311,6 +321,8 @@
 
         // JavaScript for language toggle functionality
         const languageButton = document.getElementById('language-button');
+        const languageText = document.getElementById('language-text');
+        const flagIcon = document.getElementById('flag-icon');
         const navButtons = document.querySelectorAll('.nav-button');
         const searchPlaceholder = document.querySelector('.search-input');
         const searchButtonText = document.querySelector('.search-button');
@@ -346,7 +358,8 @@
 
         languageButton.addEventListener('click', () => {
             currentLanguage = currentLanguage === 'en' ? 'ar' : 'en';
-            languageButton.textContent = currentLanguage === 'en' ? 'EN' : 'AR';
+            languageText.textContent = currentLanguage === 'en' ? 'AR' : 'EN';
+            flagIcon.src = currentLanguage === 'en' ? 'https://flagcdn.com/eg.svg' : 'https://flagcdn.com/gb.svg';
 
             // Update navigation buttons
             navButtons[0].textContent = translations[currentLanguage].findLecture;
