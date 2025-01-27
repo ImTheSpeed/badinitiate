@@ -66,6 +66,7 @@
             gap: 0.5rem;
             flex-wrap: nowrap;
             justify-content: flex-end;
+            align-items: center;
         }
 
         .nav-link {
@@ -73,11 +74,11 @@
         }
 
         .nav-button {
-            padding: 0.75rem 1.25rem;
+            padding: 0.5rem 1rem;
             border: none;
             border-radius: 6px;
             cursor: pointer;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             font-weight: 500;
             transition: all 0.3s ease;
             background: #e0e0e0;
@@ -94,8 +95,27 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
+        .language-button {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            background: #1a237e;
+            color: white;
+            margin-right: 0.5rem;
+        }
+
+        .language-button:hover {
+            background: #283593;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
         .main-content {
-            margin-top: 20px; /* Reduced space between header and main content */
+            margin-top: 30px; /* Increased space between header and main content */
             width: 90%;
             max-width: 1200px;
             padding: 1rem;
@@ -110,7 +130,7 @@
         .search-container {
             width: 100%;
             max-width: 600px;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem; /* Increased space below search bar */
         }
 
         .search-box {
@@ -132,9 +152,9 @@
 
         .search-input {
             flex: 1;
-            padding: 0.75rem;
+            padding: 0.5rem;
             border: none;
-            font-size: 1rem;
+            font-size: 0.9rem;
             color: #333;
             outline: none;
         }
@@ -144,15 +164,16 @@
         }
 
         .search-button {
-            padding: 0.75rem 1.5rem;
+            padding: 0.5rem 1rem;
             background: #1a237e;
             color: white;
             border: none;
             cursor: pointer;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             font-weight: 500;
             transition: background 0.3s ease, transform 0.3s ease;
             white-space: nowrap; /* Prevents button text from wrapping */
+            margin-left: 0.25rem; /* Small space between input and button */
         }
 
         .search-button:hover {
@@ -241,6 +262,7 @@
             <h1>Galala University<span>Realm</span></h1>
         </a>
         <nav class="nav-buttons">
+            <button class="language-button" id="language-button">EN</button>
             <a href="find-lecture.html" class="nav-link"><button class="nav-button active">Find Lecture</button></a>
             <a href="where-to-eat.html" class="nav-link"><button class="nav-button">Where to Eat</button></a>
             <a href="event-hub.html" class="nav-link"><button class="nav-button">Event Hub</button></a>
@@ -285,6 +307,63 @@
             } else {
                 resultContainer.textContent = 'Please enter a valid room code.';
             }
+        });
+
+        // JavaScript for language toggle functionality
+        const languageButton = document.getElementById('language-button');
+        const navButtons = document.querySelectorAll('.nav-button');
+        const searchPlaceholder = document.querySelector('.search-input');
+        const searchButtonText = document.querySelector('.search-button');
+        const resultText = document.querySelector('.result-container');
+        const mapTitle = document.querySelector('.map-title');
+
+        const translations = {
+            en: {
+                findLecture: "Find Lecture",
+                whereToEat: "Where to Eat",
+                eventHub: "Event Hub",
+                studyArchive: "Study Archive",
+                pois: "POIs",
+                enterRoom: "Enter Room Code/Number",
+                findRoom: "Find The Room",
+                yourRoomAt: "Your Room is at:",
+                guCollegeMap: "GU COLLEGES MAP"
+            },
+            ar: {
+                findLecture: "اماكن المحاضرات",
+                whereToEat: "مطاعم للأكل",
+                eventHub: "مركز ألاحداث",
+                studyArchive: "الأرشيف و الملخصات",
+                pois: "لقطات اهتمام",
+                enterRoom: "ادخل كود / رقم الغرفة",
+                findRoom: "ابحث",
+                yourRoomAt: "هذه الغرفه تقع في",
+                guCollegeMap: "خريطة الكليات"
+            }
+        };
+
+        let currentLanguage = 'en';
+
+        languageButton.addEventListener('click', () => {
+            currentLanguage = currentLanguage === 'en' ? 'ar' : 'en';
+            languageButton.textContent = currentLanguage === 'en' ? 'EN' : 'AR';
+
+            // Update navigation buttons
+            navButtons[0].textContent = translations[currentLanguage].findLecture;
+            navButtons[1].textContent = translations[currentLanguage].whereToEat;
+            navButtons[2].textContent = translations[currentLanguage].eventHub;
+            navButtons[3].textContent = translations[currentLanguage].studyArchive;
+            navButtons[4].textContent = translations[currentLanguage].pois;
+
+            // Update search placeholder and button text
+            searchPlaceholder.placeholder = translations[currentLanguage].enterRoom;
+            searchButtonText.textContent = translations[currentLanguage].findRoom;
+
+            // Update result text
+            resultText.textContent = translations[currentLanguage].yourRoomAt;
+
+            // Update map title
+            mapTitle.textContent = translations[currentLanguage].guCollegeMap;
         });
     </script>
 </body>
