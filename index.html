@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,6 +12,7 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'DM Sans', sans-serif;
+            font-weight: bold; /* Ensures bold text site-wide */
         }
 
         body {
@@ -23,16 +25,17 @@
 
         .header {
             background: white;
-            padding: 1.25rem 2.5rem;
+            padding: 1rem; /* Adjust padding for better responsiveness */
             box-shadow: 0 2px 4px rgba(0,0,0,0.05);
             display: flex;
             align-items: center;
             justify-content: space-between;
             position: relative;
-            width: 90%;
+            width: 100%;
             max-width: 1200px;
             border-radius: 12px;
             margin-top: 20px;
+            flex-wrap: wrap; /* Allows navigation buttons to wrap on smaller screens */
         }
 
         .logo-container {
@@ -55,7 +58,8 @@
 
         .nav-buttons {
             display: flex;
-            gap: 0.75rem;
+            gap: 0.5rem; /* Adjust spacing for better mobile fit */
+            flex-wrap: wrap; /* Ensures buttons don't overflow */
         }
 
         .nav-link {
@@ -83,9 +87,8 @@
             margin-top: 80px;
             width: 90%;
             max-width: 1200px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            padding: 1rem; /* Add padding for small screens */
+            flex: 1;
         }
 
         .search-container {
@@ -115,10 +118,8 @@
             padding: 0.75rem 0;
             border: none;
             font-size: 1rem;
-            font-weight: 400;
             color: #333;
             outline: none;
-            font-family: 'DM Sans', sans-serif;
         }
 
         .search-input::placeholder {
@@ -163,7 +164,7 @@
         .map-container img {
             width: 100%;
             height: auto;
-            display: block;
+            max-height: 60vh; /* Prevents the map from becoming too tall */
         }
 
         .map-title {
@@ -173,6 +174,35 @@
             font-size: 1.1rem;
             font-weight: 400;
             letter-spacing: 0.5px;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column; /* Stack items vertically on smaller screens */
+                padding: 1rem;
+            }
+
+            .nav-buttons {
+                justify-content: center; /* Center navigation buttons on smaller screens */
+            }
+
+            .main-content {
+                width: 100%;
+                padding: 0.5rem;
+            }
+
+            .search-box {
+                flex-direction: column;
+            }
+
+            .search-button {
+                width: 100%;
+                margin-top: 0.5rem;
+            }
+
+            .map-container img {
+                max-height: 40vh; /* Further limit map height on mobile */
+            }
         }
     </style>
 </head>
