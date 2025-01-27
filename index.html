@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galala University Realm</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        body {
+            background: #f0f2f5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .header {
+            background: white;
+            padding: 1.25rem 2.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            width: 90%;
+            max-width: 1200px;
+            border-radius: 12px;
+            margin-top: 20px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+            color: #1a237e;
+        }
+
+        .logo {
+            height: 45px;
+            width: auto;
+        }
+
+        .logo-container h1 {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .nav-link {
+            text-decoration: none;
+        }
+
+        .nav-button {
+            padding: 0.75rem 1.25rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            background: #e0e0e0;
+            color: #424242;
+        }
+
+        .nav-button.active {
+            background: #1a237e;
+            color: white;
+        }
+
+        .main-content {
+            margin-top: 80px;
+            width: 90%;
+            max-width: 1200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .search-container {
+            width: 100%;
+            max-width: 600px;
+            margin-bottom: 1rem;
+        }
+
+        .search-box {
+            display: flex;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+        }
+
+        .search-icon {
+            display: flex;
+            align-items: center;
+            padding: 0 0.75rem;
+            color: #666;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 0.75rem 0;
+            border: none;
+            font-size: 1rem;
+            font-weight: 400;
+            color: #333;
+            outline: none;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .search-input::placeholder {
+            color: #999;
+        }
+
+        .search-button {
+            padding: 0.75rem 1.5rem;
+            background: #1a237e;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: background 0.2s ease;
+            margin-left: 0.5rem;
+        }
+
+        .search-button:hover {
+            background: #283593;
+        }
+
+        .result-container {
+            background: white;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            font-size: 1.1rem;
+            color: #1a237e;
+            font-weight: 500;
+        }
+
+        .map-container {
+            margin-top: 2rem;
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .map-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .map-title {
+            text-align: center;
+            color: #666;
+            margin-top: 1rem;
+            font-size: 1.1rem;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="index.html" class="logo-container">
+            <img src="https://www.egyptianeducation.com/ImageHandler.ashx?Id=14525&SS=ceddd09c14cae84267b064642c315f8b" alt="Galala University Logo" class="logo">
+            <h1>Galala University Realm</h1>
+        </a>
+        <nav class="nav-buttons">
+            <a href="find-lecture.html" class="nav-link"><button class="nav-button active">Find Lecture</button></a>
+            <a href="where-to-eat.html" class="nav-link"><button class="nav-button">Where to Eat</button></a>
+            <a href="event-hub.html" class="nav-link"><button class="nav-button">Event Hub</button></a>
+            <a href="study-archive.html" class="nav-link"><button class="nav-button">Study Archive</button></a>
+            <a href="pois.html" class="nav-link"><button class="nav-button">POIs</button></a>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <div class="search-container">
+            <div class="search-box">
+                <div class="search-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </div>
+                <input type="text" class="search-input" placeholder="Enter Room Code/Number">
+                <button class="search-button">Find The Room</button>
+            </div>
+            <div class="result-container">
+                Your Room is at:
+            </div>
+        </div>
+
+        <div class="map-container">
+            <img src="/api/placeholder/800/400" alt="GU Colleges Map">
+            <div class="map-title">GU COLLEGES MAP</div>
+        </div>
+    </main>
+</body>
+</html>
