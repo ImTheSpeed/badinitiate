@@ -31,12 +31,10 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            position: relative;
+            position: fixed;
+            top: 0;
             width: 100%;
-            max-width: 1200px;
-            border-radius: 12px;
-            margin-top: 20px;
-            flex-wrap: nowrap;
+            z-index: 1000;
         }
 
         .logo-container {
@@ -96,35 +94,9 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-        .language-button {
-            padding: 0.4rem 1rem;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            background: #1a237e;
-            color: white;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .language-button:hover {
-            background: #283593;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .flag-icon {
-            width: 15px;
-            height: auto;
-        }
-
         /* New styles for the "Where to Eat" page */
         .main-content {
-            margin-top: 40px;
+            margin-top: 100px; /* Adjusted for fixed header */
             width: 90%;
             max-width: 1200px;
             padding: 1.5rem;
@@ -235,7 +207,29 @@
             }
         }
 
+        /* Responsive adjustments */
         @media (max-width: 768px) {
+            .header {
+                padding: 1rem;
+            }
+
+            .logo {
+                height: 50px;
+            }
+
+            .logo-container h1 {
+                font-size: 1.5rem;
+            }
+
+            .nav-buttons {
+                gap: 0.5rem;
+            }
+
+            .nav-button {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+
             .restaurant-grid {
                 grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
                 gap: 1rem;
@@ -257,6 +251,29 @@
                 font-size: 0.9rem;
             }
         }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 0.5rem;
+            }
+
+            .logo {
+                height: 40px;
+            }
+
+            .logo-container h1 {
+                font-size: 1.2rem;
+            }
+
+            .nav-buttons {
+                gap: 0.3rem;
+            }
+
+            .nav-button {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.8rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -266,11 +283,7 @@
             <h1>Galala University<span>Realm</span></h1>
         </a>
         <nav class="nav-buttons">
-            <button class="language-button" id="language-button">
-                <span id="language-text">AR</span>
-                <img src="https://flagcdn.com/eg.svg" alt="Egypt Flag" class="flag-icon" id="flag-icon">
-            </button>
-            <a href="index.html" class="nav-link"><button class="nav-button">Find Lecture</button></a>
+            <a href="find-lecture.html" class="nav-link"><button class="nav-button">Find Lecture</button></a>
             <a href="where-to-eat.html" class="nav-link"><button class="nav-button active">Where to Eat</button></a>
             <a href="event-hub.html" class="nav-link"><button class="nav-button">Event Hub</button></a>
             <a href="study-archive.html" class="nav-link"><button class="nav-button">Study Archive</button></a>
@@ -281,8 +294,8 @@
     <main class="main-content">
         <div class="restaurant-grid">
             <!-- Example Restaurant Cards -->
-            <div class="restaurant-card" data-menu="https://img.freepik.com/premium-vector/digital-restaurant-corporate-menu-flyer-template-design_1116848-10.jpg">
-                <img src="https://img.freepik.com/premium-vector/digital-restaurant-corporate-menu-flyer-template-design_1116848-10.jpg" alt="Restaurant 1">
+            <div class="restaurant-card" data-menu="https://via.placeholder.com/600">
+                <img src="https://via.placeholder.com/200" alt="Restaurant 1">
                 <div class="details">
                     <h3>Restaurant 1</h3>
                     <p class="location">Location: Campus Building A</p>
