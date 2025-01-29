@@ -1,1 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POIs - Galala University</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+    <style>
+        /* Reuse existing styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 600; /* Bolder font for better readability */
+        }
 
+        body {
+            background: #f0f2f5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .header {
+            background: white;
+            padding: 1.5rem; /* Increased padding */
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            width: 100%;
+            max-width: 1200px;
+            border-radius: 12px;
+            margin-top: 20px; /* Increased margin */
+            flex-wrap: nowrap;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem; /* Increased gap */
+            text-decoration: none;
+            color: #1a237e;
+        }
+
+        .logo {
+            height: 60px; /* Increased logo size */
+            width: auto;
+        }
+
+        .logo-container h1 {
+            font-size: 1.75rem; /* Larger font size */
+            font-weight: 700; /* Bolder font */
+            line-height: 1.2;
+        }
+
+        .logo-container h1 span {
+            display: block;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 1rem; /* Increased gap */
+            flex-wrap: nowrap;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        .nav-link {
+            text-decoration: none;
+        }
+
+        .nav-button {
+            padding: 0.75rem 1.5rem; /* Larger padding */
+            border: none;
+            border-radius: 8px; /* Smoother corners */
+            cursor: pointer;
+            font-size: 1rem; /* Larger font size */
+            font-weight: 600; /* Bolder font */
+            transition: all 0.3s ease;
+            background: #e0e0e0;
+            color: #424242;
+        }
+
+        .nav-button.active {
+            background: #1a237e;
+            color: white;
+        }
+
+        .nav-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .language-button {
+            padding: 0.4rem 1rem; /* Larger padding */
+            border: none;
+            border-radius: 5px; /* Smoother corners */
+            cursor: pointer;
+            font-size: 0.9rem; /* Larger font size */
+            font-weight: 600; /* Bolder font */
+            transition: all 0.3s ease;
+            background: #1a237e;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem; /* Space between text and flag */
+        }
+
+        .language-button:hover {
+            background: #283593;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .flag-icon {
+            width: 15px; /* Flag size */
+            height: auto;
+        }
+
+        /* Main content for POIs */
+        .main-content {
+            margin-top: 40px; /* Increased space */
+            width: 90%;
+            max-width: 1200px;
+            padding: 1.5rem; /* Increased padding */
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Floating rectangle */
+        .pois-box {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .pois-box h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1a237e;
+            margin-bottom: 1.5rem;
+        }
+
+        .pois-box p {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #424242;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .pois-box p strong {
+            font-weight: 700;
+            color: #1a237e;
+        }
+
+        .pois-box p em {
+            font-style: italic;
+            color: #666;
+        }
+
+        .pois-box ul {
+            text-align: left;
+            margin-bottom: 1.5rem;
+        }
+
+        .pois-box ul li {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #424242;
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                padding: 1rem;
+                margin-top: 10px;
+                gap: 1rem;
+            }
+
+            .logo-container {
+                justify-content: center;
+            }
+
+            .nav-buttons {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .main-content {
+                width: 100%;
+                padding: 1rem;
+                margin-top: 20px;
+            }
+
+            .pois-box {
+                padding: 1.5rem;
+            }
+
+            .pois-box h2 {
+                font-size: 1.75rem;
+            }
+
+            .pois-box p {
+                font-size: 1rem;
+            }
+
+            .pois-box ul li {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 0.5rem;
+                margin-top: 5px;
+            }
+
+            .logo {
+                height: 40px;
+            }
+
+            .logo-container h1 {
+                font-size: 1.2rem;
+            }
+
+            .nav-buttons {
+                gap: 0.3rem;
+            }
+
+            .nav-button {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.8rem;
+            }
+
+            .pois-box {
+                padding: 1rem;
+            }
+
+            .pois-box h2 {
+                font-size: 1.5rem;
+            }
+
+            .pois-box p {
+                font-size: 0.9rem;
+            }
+
+            .pois-box ul li {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="index.html" class="logo-container">
+            <img src="https://www.egyptianeducation.com/ImageHandler.ashx?Id=14525&SS=ceddd09c14cae84267b064642c315f8b" alt="Galala University Logo" class="logo">
+            <h1>Galala University<span>Realm</span></h1>
+        </a>
+        <nav class="nav-buttons">
+            <button class="language-button" id="language-button">
+                <span id="language-text">AR</span>
+                <img src="https://flagcdn.com/eg.svg" alt="Egypt Flag" class="flag-icon" id="flag-icon">
+            </button>
+            <a href="find-lecture.html" class="nav-link"><button class="nav-button">Find Lecture</button></a>
+            <a href="where-to-eat.html" class="nav-link"><button class="nav-button">Where to Eat</button></a>
+            <a href="event-hub.html" class="nav-link"><button class="nav-button">Event Hub</button></a>
+            <a href="study-archive.html" class="nav-link"><button class="nav-button">Study Archive</button></a>
+            <a href="pois.html" class="nav-link"><button class="nav-button active">POIs</button></a>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <div class="pois-box">
+            <h2>Discover and Share the Hidden Gems of Our University – Points of Interest (POIs) Page!</h2>
+            <p>
+                The <strong>Points of Interest (POIs) Page</strong> is a dedicated space for students, faculty, and staff to explore, share, and highlight the most interesting spots around our university. Whether it’s a scenic study corner, a breathtaking sunset view, a historical landmark, or a vibrant student hub, this platform brings our campus to life through the eyes of the community.
+            </p>
+            <h3>📸 Capture & Share</h3>
+            <p>
+                Everyone on campus can contribute by posting photos of unique and remarkable locations within the university. From cozy cafés and inspiring murals to peaceful gardens and lively event spaces, every corner of the campus has a story to tell.
+            </p>
+            <h3>👍 Upvote, Downvote & Discover</h3>
+            <p>
+                Community-driven engagement ensures the best content rises to the top! Users can <strong>upvote</strong> their favorite POIs to make them more visible or <strong>downvote</strong> less relevant posts, helping others discover the most loved and visited spots.
+            </p>
+            <h3>🔒 Safe & Authentic Contributions</h3>
+            <p>
+                To maintain the integrity and quality of the content, all users must <strong>log in with their university credentials</strong> before posting. This ensures a respectful and trustworthy environment, free from spam and misuse, allowing for genuine engagement from our campus community.
+            </p>
+            <h3>🌍 Why Use the POIs Page?</h3>
+            <ul>
+                <li><strong>Explore</strong> new locations you might not have known about.</li>
+                <li><strong>Share</strong> your favorite campus spots with others.</li>
+                <li><strong>Engage</strong> with the community by reacting to posts.</li>
+                <li><strong>Discover</strong> hidden gems, whether you're a freshman or a long-time student.</li>
+            </ul>
+            <p>
+                Join us in mapping the heart of our university—one photo at a time! 🚀
+            </p>
+        </div>
+    </main>
+</body>
+</html>
