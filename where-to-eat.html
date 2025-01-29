@@ -4,14 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Where to Eat - Galala University</title>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
     <style>
+        /* Reuse existing styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'DM Sans', sans-serif;
-            font-weight: bold;
+            font-weight: 600;
         }
 
         body {
@@ -20,62 +21,67 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: flex-start;
         }
 
         .header {
             background: white;
-            padding: 1rem;
+            padding: 1.5rem;
             box-shadow: 0 2px 4px rgba(0,0,0,0.05);
             display: flex;
             align-items: center;
             justify-content: space-between;
-            width: 90%;
+            position: relative;
+            width: 100%;
             max-width: 1200px;
             border-radius: 12px;
             margin-top: 20px;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
         }
 
         .logo-container {
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 1.5rem;
             text-decoration: none;
             color: #1a237e;
         }
 
         .logo {
-            height: 50px;
+            height: 60px;
             width: auto;
         }
 
         .logo-container h1 {
-            font-size: 1.8rem;
+            font-size: 1.75rem;
             font-weight: 700;
             line-height: 1.2;
         }
 
         .logo-container h1 span {
             display: block;
-            font-size: 1.2rem;
-            color: #555;
         }
 
         .nav-buttons {
             display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-            justify-content: center;
+            gap: 1rem;
+            flex-wrap: nowrap;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        .nav-link {
+            text-decoration: none;
         }
 
         .nav-button {
-            padding: 0.75rem 1.25rem;
+            padding: 0.75rem 1.5rem;
             border: none;
-            border-radius: 6px;
+            border-radius: 8px;
             cursor: pointer;
-            font-size: 0.95rem;
-            font-weight: 500;
-            transition: all 0.2s ease;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
             background: #e0e0e0;
             color: #424242;
         }
@@ -85,62 +91,170 @@
             color: white;
         }
 
-        .language-switch {
-            display: flex;
-            gap: 0.5rem;
-            align-items: center;
+        .nav-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .language-button {
-            padding: 0.5rem 1rem;
+            padding: 0.4rem 1rem;
             border: none;
-            border-radius: 6px;
+            border-radius: 5px;
             cursor: pointer;
             font-size: 0.9rem;
             font-weight: 600;
+            transition: all 0.3s ease;
             background: #1a237e;
             color: white;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
+        .language-button:hover {
+            background: #283593;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .flag-icon {
+            width: 15px;
+            height: auto;
+        }
+
+        /* New styles for the "Where to Eat" page */
         .main-content {
-            margin-top: 20px;
+            margin-top: 40px;
             width: 90%;
             max-width: 1200px;
-            padding: 1rem;
+            padding: 1.5rem;
+            flex: 1;
+            text-align: center;
+        }
+
+        .restaurant-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1.5rem;
-            justify-content: center;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
         }
 
         .restaurant-card {
             background: white;
             border-radius: 12px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            padding: 1rem;
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            cursor: pointer;
         }
 
         .restaurant-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .restaurant-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .restaurant-card .details {
+            padding: 1rem;
+            text-align: left;
+        }
+
+        .restaurant-card h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .restaurant-card .location {
+            color: #1a237e;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .restaurant-card .rating {
+            color: #ffc107;
+            font-size: 1rem;
+        }
+
+        /* Expanded menu overlay */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .overlay img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 8px;
+            animation: zoomIn 0.3s ease;
+        }
+
+        .overlay .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: #1a237e;
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.8);
+            }
+            to {
+                transform: scale(1);
+            }
         }
 
         @media (max-width: 768px) {
-            .header {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
+            .restaurant-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 1rem;
             }
 
-            .nav-buttons {
-                justify-content: center;
-                flex-wrap: wrap;
+            .restaurant-card img {
+                height: 120px;
             }
 
-            .main-content {
-                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            .restaurant-card h3 {
+                font-size: 1rem;
+            }
+
+            .restaurant-card .location {
+                font-size: 0.8rem;
+            }
+
+            .restaurant-card .rating {
+                font-size: 0.9rem;
             }
         }
     </style>
@@ -151,12 +265,12 @@
             <img src="https://www.egyptianeducation.com/ImageHandler.ashx?Id=14525&SS=ceddd09c14cae84267b064642c315f8b" alt="Galala University Logo" class="logo">
             <h1>Galala University<span>Realm</span></h1>
         </a>
-        <div class="language-switch">
-            <button class="language-button">AR</button>
-            <button class="language-button">EN</button>
-        </div>
         <nav class="nav-buttons">
-            <a href="index.html" class="nav-link"><button class="nav-button">Find Lecture</button></a>
+            <button class="language-button" id="language-button">
+                <span id="language-text">AR</span>
+                <img src="https://flagcdn.com/eg.svg" alt="Egypt Flag" class="flag-icon" id="flag-icon">
+            </button>
+            <a href="find-lecture.html" class="nav-link"><button class="nav-button">Find Lecture</button></a>
             <a href="where-to-eat.html" class="nav-link"><button class="nav-button active">Where to Eat</button></a>
             <a href="event-hub.html" class="nav-link"><button class="nav-button">Event Hub</button></a>
             <a href="study-archive.html" class="nav-link"><button class="nav-button">Study Archive</button></a>
@@ -165,17 +279,66 @@
     </header>
 
     <main class="main-content">
-        <script>
-            const restaurants = Array.from({ length: 15 }, (_, i) => `
-                <div class="restaurant-card">
-                    <img src="https://via.placeholder.com/250" alt="Restaurant ${i + 1} Menu" class="menu-image">
-                    <h3>Restaurant ${i + 1}</h3>
-                    <p>📍 Location ${i + 1}</p>
-                    <div class="rating">${'★'.repeat((i % 5) + 1)}${'☆'.repeat(5 - (i % 5 + 1))}</div>
+        <div class="restaurant-grid">
+            <!-- Example Restaurant Cards -->
+            <div class="restaurant-card" data-menu="https://via.placeholder.com/600">
+                <img src="https://via.placeholder.com/200" alt="Restaurant 1">
+                <div class="details">
+                    <h3>Restaurant 1</h3>
+                    <p class="location">Location: Campus Building A</p>
+                    <div class="rating">★★★★☆</div>
                 </div>
-            `).join('');
-            document.write(restaurants);
-        </script>
+            </div>
+            <div class="restaurant-card" data-menu="https://via.placeholder.com/600">
+                <img src="https://via.placeholder.com/200" alt="Restaurant 2">
+                <div class="details">
+                    <h3>Restaurant 2</h3>
+                    <p class="location">Location: Campus Building B</p>
+                    <div class="rating">★★★☆☆</div>
+                </div>
+            </div>
+            <div class="restaurant-card" data-menu="https://via.placeholder.com/600">
+                <img src="https://via.placeholder.com/200" alt="Restaurant 3">
+                <div class="details">
+                    <h3>Restaurant 3</h3>
+                    <p class="location">Location: Campus Building C</p>
+                    <div class="rating">★★★★★</div>
+                </div>
+            </div>
+            <!-- Add more cards as needed -->
+        </div>
+
+        <!-- Overlay for expanded menu -->
+        <div class="overlay" id="overlay">
+            <button class="close-btn" id="close-btn">×</button>
+            <img src="" alt="Expanded Menu" id="expanded-menu">
+        </div>
     </main>
+
+    <script>
+        // JavaScript for expanding menu images
+        const restaurantCards = document.querySelectorAll('.restaurant-card');
+        const overlay = document.getElementById('overlay');
+        const expandedMenu = document.getElementById('expanded-menu');
+        const closeBtn = document.getElementById('close-btn');
+
+        restaurantCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const menuSrc = card.getAttribute('data-menu');
+                expandedMenu.src = menuSrc;
+                overlay.classList.add('active');
+            });
+        });
+
+        closeBtn.addEventListener('click', () => {
+            overlay.classList.remove('active');
+        });
+
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) {
+                overlay.classList.remove('active');
+            }
+        });
+    </script>
 </body>
 </html>
