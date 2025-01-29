@@ -31,13 +31,12 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            position: fixed;
-            top: 0;
+            position: relative;
             width: 100%;
             max-width: 1200px;
-            z-index: 1000;
             border-radius: 12px;
             margin-top: 20px;
+            flex-wrap: nowrap;
         }
 
         .logo-container {
@@ -97,14 +96,43 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-        /* New styles for the "Where to Eat" page */
+        .language-button {
+            padding: 0.4rem 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            background: #1a237e;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .language-button:hover {
+            background: #283593;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .flag-icon {
+            width: 15px;
+            height: auto;
+        }
+
         .main-content {
-            margin-top: 120px; /* Adjusted for fixed header */
+            margin-top: 40px;
             width: 90%;
             max-width: 1200px;
             padding: 1.5rem;
             flex: 1;
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
         }
 
         .restaurant-grid {
@@ -213,25 +241,25 @@
         /* Responsive adjustments */
         @media (max-width: 768px) {
             .header {
+                flex-direction: column;
                 padding: 1rem;
                 margin-top: 10px;
+                gap: 1rem;
             }
 
-            .logo {
-                height: 50px;
-            }
-
-            .logo-container h1 {
-                font-size: 1.5rem;
+            .logo-container {
+                justify-content: center;
             }
 
             .nav-buttons {
-                gap: 0.5rem;
+                justify-content: center;
+                flex-wrap: wrap;
             }
 
-            .nav-button {
-                padding: 0.5rem 1rem;
-                font-size: 0.9rem;
+            .main-content {
+                width: 100%;
+                padding: 1rem;
+                margin-top: 20px;
             }
 
             .restaurant-grid {
@@ -288,6 +316,10 @@
             <h1>Galala University<span>Realm</span></h1>
         </a>
         <nav class="nav-buttons">
+            <button class="language-button" id="language-button">
+                <span id="language-text">AR</span>
+                <img src="https://flagcdn.com/eg.svg" alt="Egypt Flag" class="flag-icon" id="flag-icon">
+            </button>
             <a href="find-lecture.html" class="nav-link"><button class="nav-button">Find Lecture</button></a>
             <a href="where-to-eat.html" class="nav-link"><button class="nav-button active">Where to Eat</button></a>
             <a href="event-hub.html" class="nav-link"><button class="nav-button">Event Hub</button></a>
@@ -307,119 +339,7 @@
                     <div class="rating">★★★★☆</div>
                 </div>
             </div>
-            <div class="restaurant-card" data-menu="https://via.placeholder.com/600">
-                <img src="https://via.placeholder.com/200" alt="Restaurant 2">
-                <div class="details">
-                    <h3>Restaurant 2</h3>
-                    <p class="location">Location: Campus Building B</p>
-                    <div class="rating">★★★☆☆</div>
-                </div>
-            </div>
-            <div class="restaurant-card" data-menu="https://via.placeholder.com/600">
-                <img src="https://via.placeholder.com/200" alt="Restaurant 3">
-                <div class="details">
-                    <h3>Restaurant 3</h3>
-                    <p class="location">Location: Campus Building C</p>
-                    <div class="rating">★★★★★</div>
-                </div>
-            </div>
             <!-- Add more cards as needed -->
-            <div class="restaurant-card" data-menu="https://via.placeholder.com/600">
-                <img src="https://via.placeholder.com/200" alt="Restaurant 4">
-                <div class="details">
-                    <h3>Restaurant 4</h3>
-                    <p class="location">Location: Campus Building D</p>
-                    <div class="rating">★★★★☆</div>
-                </div>
-            </div>
-            <div class="restaurant-card" data-menu="https://via.placeholder.com/600">
-                <img src="https://via.placeholder.com/200" alt="Restaurant 5">
-                <div class="details">
-                    <h3>Restaurant 5</h3>
-                    <p class="location">Location: Campus Building E</p>
-                    <div class="rating">★★★☆☆</div>
-                </div>
-            </div>
-            <div class="restaurant-card" data-menu="https://via.placeholder.com/600">
-                <img src="https://via.placeholder.com/200" alt="Restaurant 6">
-                <div class="details">
-                    <h3>Restaurant 6</h3>
-                    <p class="location">Location: Campus Building F</p>
-                    <div class="rating">★★★★★</div>
-                </div>
-            </div>
-            <div class="restaurant-card" data-menu="https://via.placeholder.com/600">
-                <img src="https://via.placeholder.com/200" alt="Restaurant 7">
-                <div class="details">
-                    <h3>Restaurant 7</h3>
-                    <p class="location">Location: Campus Building G</p>
-                    <div class="rating">★★★★☆</div>
-                </div>
-            </div>
-            <div class="restaurant-card" data-menu="https://via.placeholder.com/600">
-                <img src="https://via.placeholder.com/200" alt="Restaurant 8">
-                <div class="details">
-                    <h3>Restaurant 8</h3>
-                    <p class="location">Location: Campus Building H</p>
-                    <div class="rating">★★★☆☆</div>
-                </div>
-            </div>
-            <div class="restaurant-card" data-menu="https://via.placeholder.com/600">
-                <img src="https://via.placeholder.com/200" alt="Restaurant 9">
-                <div class="details">
-                    <h3>Restaurant 9</h3>
-                    <p class="location">Location: Campus Building I</p>
-                    <div class="rating">★★★★★</div>
-                </div>
-            </div>
-            <div class="restaurant-card" data-menu="https://via.placeholder.com/600">
-                <img src="https://via.placeholder.com/200" alt="Restaurant 10">
-                <div class="details">
-                    <h3>Restaurant 10</h3>
-                    <p class="location">Location: Campus Building J</p>
-                    <div class="rating">★★★★☆</div>
-                </div>
-            </div>
-            <div class="restaurant-card" data-menu="https://via.placeholder.com/600">
-                <img src="https://via.placeholder.com/200" alt="Restaurant 11">
-                <div class="details">
-                    <h3>Restaurant 11</h3>
-                    <p class="location">Location: Campus Building K</p>
-                    <div class="rating">★★★☆☆</div>
-                </div>
-            </div>
-            <div class="restaurant-card" data-menu="https://via.placeholder.com/600">
-                <img src="https://via.placeholder.com/200" alt="Restaurant 12">
-                <div class="details">
-                    <h3>Restaurant 12</h3>
-                    <p class="location">Location: Campus Building L</p>
-                    <div class="rating">★★★★★</div>
-                </div>
-            </div>
-            <div class="restaurant-card" data-menu="https://via.placeholder.com/600">
-                <img src="https://via.placeholder.com/200" alt="Restaurant 13">
-                <div class="details">
-                    <h3>Restaurant 13</h3>
-                    <p class="location">Location: Campus Building M</p>
-                    <div class="rating">★★★★☆</div>
-                </div>
-            </div>
-            <div class="restaurant-card" data-menu="https://via.placeholder.com/600">
-                <img src="https://via.placeholder.com/200" alt="Restaurant 14">
-                <div class="details">
-                    <h3>Restaurant 14</h3>
-                    <p class="location">Location: Campus Building N</p>
-                    <div class="rating">★★★☆☆</div>
-                </div>
-            </div>
-            <div class="restaurant-card" data-menu="https://via.placeholder.com/600">
-                <img src="https://via.placeholder.com/200" alt="Restaurant 15">
-                <div class="details">
-                    <h3>Restaurant 15</h3>
-                    <p class="location">Location: Campus Building O</p>
-                    <div class="rating">★★★★★</div>
-                </div>
-            </div>
         </div>
 
         <!-- Overlay for expanded menu -->
