@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Hub - Galala University</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+    <style>
+        /* Reuse existing styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 600; /* Bolder font for better readability */
+        }
+
+        body {
+            background: #f0f2f5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .header {
+            background: white;
+            padding: 1.5rem; /* Increased padding */
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            width: 100%;
+            max-width: 1200px;
+            border-radius: 12px;
+            margin-top: 20px; /* Increased margin */
+            flex-wrap: nowrap;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem; /* Increased gap */
+            text-decoration: none;
+            color: #1a237e;
+        }
+
+        .logo {
+            height: 60px; /* Increased logo size */
+            width: auto;
+        }
+
+        .logo-container h1 {
+            font-size: 1.75rem; /* Larger font size */
+            font-weight: 700; /* Bolder font */
+            line-height: 1.2;
+        }
+
+        .logo-container h1 span {
+            display: block;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 1rem; /* Increased gap */
+            flex-wrap: nowrap;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        .nav-link {
+            text-decoration: none;
+        }
+
+        .nav-button {
+            padding: 0.75rem 1.5rem; /* Larger padding */
+            border: none;
+            border-radius: 8px; /* Smoother corners */
+            cursor: pointer;
+            font-size: 1rem; /* Larger font size */
+            font-weight: 600; /* Bolder font */
+            transition: all 0.3s ease;
+            background: #e0e0e0;
+            color: #424242;
+        }
+
+        .nav-button.active {
+            background: #1a237e;
+            color: white;
+        }
+
+        .nav-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .language-button {
+            padding: 0.4rem 1rem; /* Larger padding */
+            border: none;
+            border-radius: 5px; /* Smoother corners */
+            cursor: pointer;
+            font-size: 0.9rem; /* Larger font size */
+            font-weight: 600; /* Bolder font */
+            transition: all 0.3s ease;
+            background: #1a237e;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem; /* Space between text and flag */
+        }
+
+        .language-button:hover {
+            background: #283593;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .flag-icon {
+            width: 15px; /* Flag size */
+            height: auto;
+        }
+
+        /* Main content for Event Hub */
+        .main-content {
+            margin-top: 40px; /* Increased space */
+            width: 90%;
+            max-width: 1200px;
+            padding: 1.5rem; /* Increased padding */
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Floating rectangle */
+        .event-hub-box {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .event-hub-box h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1a237e;
+            margin-bottom: 1.5rem;
+        }
+
+        .event-hub-box p {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #424242;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .event-hub-box p strong {
+            font-weight: 700;
+            color: #1a237e;
+        }
+
+        .event-hub-box p em {
+            font-style: italic;
+            color: #666;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                padding: 1rem;
+                margin-top: 10px;
+                gap: 1rem;
+            }
+
+            .logo-container {
+                justify-content: center;
+            }
+
+            .nav-buttons {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .main-content {
+                width: 100%;
+                padding: 1rem;
+                margin-top: 20px;
+            }
+
+            .event-hub-box {
+                padding: 1.5rem;
+            }
+
+            .event-hub-box h2 {
+                font-size: 1.75rem;
+            }
+
+            .event-hub-box p {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 0.5rem;
+                margin-top: 5px;
+            }
+
+            .logo {
+                height: 40px;
+            }
+
+            .logo-container h1 {
+                font-size: 1.2rem;
+            }
+
+            .nav-buttons {
+                gap: 0.3rem;
+            }
+
+            .nav-button {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.8rem;
+            }
+
+            .event-hub-box {
+                padding: 1rem;
+            }
+
+            .event-hub-box h2 {
+                font-size: 1.5rem;
+            }
+
+            .event-hub-box p {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="index.html" class="logo-container">
+            <img src="https://www.egyptianeducation.com/ImageHandler.ashx?Id=14525&SS=ceddd09c14cae84267b064642c315f8b" alt="Galala University Logo" class="logo">
+            <h1>Galala University<span>Realm</span></h1>
+        </a>
+        <nav class="nav-buttons">
+            <button class="language-button" id="language-button">
+                <span id="language-text">AR</span>
+                <img src="https://flagcdn.com/eg.svg" alt="Egypt Flag" class="flag-icon" id="flag-icon">
+            </button>
+            <a href="find-lecture.html" class="nav-link"><button class="nav-button">Find Lecture</button></a>
+            <a href="where-to-eat.html" class="nav-link"><button class="nav-button">Where to Eat</button></a>
+            <a href="event-hub.html" class="nav-link"><button class="nav-button active">Event Hub</button></a>
+            <a href="study-archive.html" class="nav-link"><button class="nav-button">Study Archive</button></a>
+            <a href="pois.html" class="nav-link"><button class="nav-button">POIs</button></a>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <div class="event-hub-box">
+            <h2>Welcome to the University Event Hub!</h2>
+            <p>
+                This platform is designed to be the central hub for all university events, allowing the Student Union, faculty, and administrative members to post and manage events in one accessible place. Whether it's academic conferences, club activities, or university-wide announcements, this site ensures that events remain easy to find and reference over time.
+            </p>
+            <p>
+                <strong>🔹 Who can post?</strong><br>
+                Authorized members, including Student Union representatives, faculty, and university management, can log in using their university credentials. Their role (e.g., Student Union, Admin, Doctor, Management) will be displayed alongside their posts.
+            </p>
+            <p>
+                <strong>🚧 Under Construction</strong><br>
+                We are currently working on building and refining the platform to ensure a seamless experience. Stay tuned for updates!
+            </p>
+        </div>
+    </main>
+</body>
+</html>
