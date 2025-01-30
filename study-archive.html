@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Archive - Galala University</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+    <style>
+        /* Reuse existing styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 600; /* Bolder font for better readability */
+        }
+
+        body {
+            background: #f0f2f5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .header {
+            background: white;
+            padding: 1.5rem; /* Increased padding */
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            width: 100%;
+            max-width: 1200px;
+            border-radius: 12px;
+            margin-top: 20px; /* Increased margin */
+            flex-wrap: nowrap;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem; /* Increased gap */
+            text-decoration: none;
+            color: #1a237e;
+        }
+
+        .logo {
+            height: 60px; /* Increased logo size */
+            width: auto;
+        }
+
+        .logo-container h1 {
+            font-size: 1.75rem; /* Larger font size */
+            font-weight: 700; /* Bolder font */
+            line-height: 1.2;
+        }
+
+        .logo-container h1 span {
+            display: block;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 1rem; /* Increased gap */
+            flex-wrap: nowrap;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        .nav-link {
+            text-decoration: none;
+        }
+
+        .nav-button {
+            padding: 0.75rem 1.5rem; /* Larger padding */
+            border: none;
+            border-radius: 8px; /* Smoother corners */
+            cursor: pointer;
+            font-size: 1rem; /* Larger font size */
+            font-weight: 600; /* Bolder font */
+            transition: all 0.3s ease;
+            background: #e0e0e0;
+            color: #424242;
+        }
+
+        .nav-button.active {
+            background: #1a237e;
+            color: white;
+        }
+
+        .nav-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .language-button {
+            padding: 0.4rem 1rem; /* Larger padding */
+            border: none;
+            border-radius: 5px; /* Smoother corners */
+            cursor: pointer;
+            font-size: 0.9rem; /* Larger font size */
+            font-weight: 600; /* Bolder font */
+            transition: all 0.3s ease;
+            background: #1a237e;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem; /* Space between text and flag */
+        }
+
+        .language-button:hover {
+            background: #283593;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .flag-icon {
+            width: 15px; /* Flag size */
+            height: auto;
+        }
+
+        /* Main content for Study Archive */
+        .main-content {
+            margin-top: 40px; /* Increased space */
+            width: 90%;
+            max-width: 1200px;
+            padding: 1.5rem; /* Increased padding */
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Floating white bar */
+        .study-archive-box {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 1000px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            min-height: 300px; /* Adjust height as needed */
+        }
+
+        /* Text section */
+        .text-section {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: flex-start;
+            flex: 1;
+            margin-right: 2rem;
+        }
+
+        .text-section button {
+            padding: 0.75rem 1.5rem;
+            background: #1a237e;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .text-section button:hover {
+            background: #283593;
+            transform: translateY(-2px);
+        }
+
+        .text-section .archive-text {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #424242;
+            line-height: 1.6;
+        }
+
+        /* Student photo */
+        .student-photo {
+            width: 250px; /* Adjust size as needed */
+            height: auto;
+            position: absolute;
+            right: 20%;
+            bottom: 0;
+        }
+
+        /* Next arrow */
+        .next-arrow {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1a237e;
+            cursor: pointer;
+            position: absolute;
+            right: 2rem;
+            bottom: 2rem;
+        }
+
+        .next-arrow img {
+            width: 24px;
+            height: auto;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                padding: 1rem;
+                margin-top: 10px;
+                gap: 1rem;
+            }
+
+            .logo-container {
+                justify-content: center;
+            }
+
+            .nav-buttons {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .main-content {
+                width: 100%;
+                padding: 1rem;
+                margin-top: 20px;
+            }
+
+            .study-archive-box {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 1.5rem;
+            }
+
+            .text-section {
+                margin-right: 0;
+                margin-bottom: 1.5rem;
+            }
+
+            .student-photo {
+                position: static;
+                width: 200px;
+                margin: 1rem auto;
+            }
+
+            .next-arrow {
+                position: static;
+                margin-top: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 0.5rem;
+                margin-top: 5px;
+            }
+
+            .logo {
+                height: 40px;
+            }
+
+            .logo-container h1 {
+                font-size: 1.2rem;
+            }
+
+            .nav-buttons {
+                gap: 0.3rem;
+            }
+
+            .nav-button {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.8rem;
+            }
+
+            .study-archive-box {
+                padding: 1rem;
+            }
+
+            .text-section button {
+                font-size: 0.9rem;
+                padding: 0.5rem 1rem;
+            }
+
+            .text-section .archive-text {
+                font-size: 1rem;
+            }
+
+            .student-photo {
+                width: 150px;
+            }
+
+            .next-arrow {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="index.html" class="logo-container">
+            <img src="https://www.egyptianeducation.com/ImageHandler.ashx?Id=14525&SS=ceddd09c14cae84267b064642c315f8b" alt="Galala University Logo" class="logo">
+            <h1>Galala University<span>Realm</span></h1>
+        </a>
+        <nav class="nav-buttons">
+            <button class="language-button" id="language-button">
+                <span id="language-text">AR</span>
+                <img src="https://flagcdn.com/eg.svg" alt="Egypt Flag" class="flag-icon" id="flag-icon">
+            </button>
+            <a href="find-lecture.html" class="nav-link"><button class="nav-button">Find Lecture</button></a>
+            <a href="where-to-eat.html" class="nav-link"><button class="nav-button">Where to Eat</button></a>
+            <a href="event-hub.html" class="nav-link"><button class="nav-button">Event Hub</button></a>
+            <a href="study-archive.html" class="nav-link"><button class="nav-button active">Study Archive</button></a>
+            <a href="pois.html" class="nav-link"><button class="nav-button">POIs</button></a>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <div class="study-archive-box">
+            <!-- Text section -->
+            <div class="text-section">
+                <button id="files-button">Files</button>
+                <div class="archive-text" id="archive-text">
+                    <p>1. Access a vast library of study materials.</p>
+                    <p>2. Upload and share your own resources.</p>
+                    <p>3. Collaborate with peers on group projects.</p>
+                    <p>4. Download lecture notes and past papers.</p>
+                    <p>5. Stay organized with categorized folders.</p>
+                    <p>6. Contribute to the academic community.</p>
+                </div>
+            </div>
+
+            <!-- Student photo -->
+            <img id="student-photo" src="https://via.placeholder.com/250" alt="Student Photo" class="student-photo">
+
+            <!-- Next arrow -->
+            <div class="next-arrow" id="next-arrow">
+                <span>Next</span>
+                <img src="https://img.icons8.com/ios-filled/50/1a237e/long-arrow-right.png" alt="Arrow">
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Data for the Study Archive
+        const archiveData = [
+            {
+                buttonText: "Files",
+                buttonLink: "#",
+                text: [
+                    "1. Access a vast library of study materials.",
+                    "2. Upload and share your own resources.",
+                    "3. Collaborate with peers on group projects.",
+                    "4. Download lecture notes and past papers.",
+                    "5. Stay organized with categorized folders.",
+                    "6. Contribute to the academic community."
+                ],
+                photo: "https://via.placeholder.com/250"
+            },
+            {
+                buttonText: "Lectures",
+                buttonLink: "#",
+                text: [
+                    "1. Watch recorded lectures anytime.",
+                    "2. Access slides and supplementary materials.",
+                    "3. Review key concepts before exams.",
+                    "4. Follow along with course progress.",
+                    "5. Share lecture notes with classmates.",
+                    "6. Stay updated with new uploads."
+                ],
+                photo: "https://via.placeholder.com/250/FF5733"
+            },
+            {
+                buttonText: "Resources",
+                buttonLink: "#",
+                text: [
+                    "1. Find textbooks and reference materials.",
+                    "2. Access research papers and journals.",
+                    "3. Explore online learning tools.",
+                    "4. Download templates and guides.",
+                    "5. Share useful resources with peers.",
+                    "6. Stay ahead with curated content."
+                ],
+                photo: "https://via.placeholder.com/250/33FF57"
+            }
+        ];
+
+        let currentIndex = 0;
+
+        // Function to update the content
+        function updateContent() {
+            const data = archiveData[currentIndex];
+            const filesButton = document.getElementById("files-button");
+            const archiveText = document.getElementById("archive-text");
+            const studentPhoto = document.getElementById("student-photo");
+
+            // Update button text and link
+            filesButton.textContent = data.buttonText;
+            filesButton.onclick = () => window.location.href = data.buttonLink;
+
+            // Update 6-line text
+            archiveText.innerHTML = data.text.map(line => `<p>${line}</p>`).join("");
+
+            // Update student photo
+            studentPhoto.src = data.photo;
+        }
+
+        // Next arrow click event
+        document.getElementById("next-arrow").addEventListener("click", () => {
+            currentIndex = (currentIndex + 1) % archiveData.length; // Cycle through data
+            updateContent();
+        });
+
+        // Initialize with the first set of data
+        updateContent();
+    </script>
+</body>
+</html>
