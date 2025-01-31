@@ -143,23 +143,22 @@
             max-width: 1000px;
             width: 100%;
             display: flex;
-            align-items: center;
+            align-items: flex-start; /* Align items to the top */
             justify-content: space-between;
             position: relative;
             min-height: 300px; /* Adjust height as needed */
         }
 
-        /* Text section */
-        .text-section {
+        /* Left section (button and text) */
+        .left-section {
             display: flex;
             flex-direction: column;
-            justify-content: flex-end;
             align-items: flex-start;
             flex: 1;
             margin-right: 2rem;
         }
 
-        .text-section button {
+        .left-section button {
             padding: 0.75rem 1.5rem;
             background: #1a237e;
             color: white;
@@ -172,25 +171,32 @@
             transition: background 0.3s ease, transform 0.3s ease;
         }
 
-        .text-section button:hover {
+        .left-section button:hover {
             background: #283593;
             transform: translateY(-2px);
         }
 
-        .text-section .archive-text {
+        .left-section .archive-text {
             font-size: 1.1rem;
             font-weight: 500;
             color: #424242;
             line-height: 1.6;
+            background: #f9f9f9; /* Light background for the text box */
+            padding: 1.5rem;
+            border-radius: 8px;
+            width: 100%;
+        }
+
+        .left-section .archive-text p {
+            margin-bottom: 1rem; /* Add spacing between paragraphs */
         }
 
         /* Student photo */
         .student-photo {
             width: 250px; /* Adjust size as needed */
             height: auto;
-            position: absolute;
-            right: 20%;
-            bottom: 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         /* Next arrow */
@@ -238,19 +244,19 @@
 
             .study-archive-box {
                 flex-direction: column;
-                align-items: flex-start;
+                align-items: center;
                 padding: 1.5rem;
             }
 
-            .text-section {
+            .left-section {
                 margin-right: 0;
                 margin-bottom: 1.5rem;
+                width: 100%;
             }
 
             .student-photo {
-                position: static;
                 width: 200px;
-                margin: 1rem auto;
+                margin-bottom: 1.5rem;
             }
 
             .next-arrow {
@@ -286,13 +292,14 @@
                 padding: 1rem;
             }
 
-            .text-section button {
+            .left-section button {
                 font-size: 0.9rem;
                 padding: 0.5rem 1rem;
             }
 
-            .text-section .archive-text {
+            .left-section .archive-text {
                 font-size: 1rem;
+                padding: 1rem;
             }
 
             .student-photo {
@@ -326,16 +333,11 @@
 
     <main class="main-content">
         <div class="study-archive-box">
-            <!-- Text section -->
-            <div class="text-section">
+            <!-- Left section (button and text) -->
+            <div class="left-section">
                 <button id="files-button">Files</button>
                 <div class="archive-text" id="archive-text">
-                    <p>1. Access a vast library of study materials.</p>
-                    <p>2. Upload and share your own resources.</p>
-                    <p>3. Collaborate with peers on group projects.</p>
-                    <p>4. Download lecture notes and past papers.</p>
-                    <p>5. Stay organized with categorized folders.</p>
-                    <p>6. Contribute to the academic community.</p>
+                    <p>Access a vast library of study materials. Upload and share your own resources. Collaborate with peers on group projects. Download lecture notes and past papers. Stay organized with categorized folders. Contribute to the academic community.</p>
                 </div>
             </div>
 
@@ -355,41 +357,20 @@
         const archiveData = [
             {
                 buttonText: "Files",
-                buttonLink: "#",
-                text: [
-                    "1. Access a vast library of study materials.",
-                    "2. Upload and share your own resources.",
-                    "3. Collaborate with peers on group projects.",
-                    "4. Download lecture notes and past papers.",
-                    "5. Stay organized with categorized folders.",
-                    "6. Contribute to the academic community."
-                ],
+                buttonLink: "https://example.com/files", // Replace with your link
+                text: "Access a vast library of study materials. Upload and share your own resources. Collaborate with peers on group projects. Download lecture notes and past papers. Stay organized with categorized folders. Contribute to the academic community.",
                 photo: "https://via.placeholder.com/250"
             },
             {
                 buttonText: "Lectures",
-                buttonLink: "#",
-                text: [
-                    "1. Watch recorded lectures anytime.",
-                    "2. Access slides and supplementary materials.",
-                    "3. Review key concepts before exams.",
-                    "4. Follow along with course progress.",
-                    "5. Share lecture notes with classmates.",
-                    "6. Stay updated with new uploads."
-                ],
+                buttonLink: "https://example.com/lectures", // Replace with your link
+                text: "Watch recorded lectures anytime. Access slides and supplementary materials. Review key concepts before exams. Follow along with course progress. Share lecture notes with classmates. Stay updated with new uploads.",
                 photo: "https://via.placeholder.com/250/FF5733"
             },
             {
                 buttonText: "Resources",
-                buttonLink: "#",
-                text: [
-                    "1. Find textbooks and reference materials.",
-                    "2. Access research papers and journals.",
-                    "3. Explore online learning tools.",
-                    "4. Download templates and guides.",
-                    "5. Share useful resources with peers.",
-                    "6. Stay ahead with curated content."
-                ],
+                buttonLink: "https://example.com/resources", // Replace with your link
+                text: "Find textbooks and reference materials. Access research papers and journals. Explore online learning tools. Download templates and guides. Share useful resources with peers. Stay ahead with curated content.",
                 photo: "https://via.placeholder.com/250/33FF57"
             }
         ];
@@ -407,8 +388,8 @@
             filesButton.textContent = data.buttonText;
             filesButton.onclick = () => window.location.href = data.buttonLink;
 
-            // Update 6-line text
-            archiveText.innerHTML = data.text.map(line => `<p>${line}</p>`).join("");
+            // Update text as a paragraph
+            archiveText.innerHTML = `<p>${data.text}</p>`;
 
             // Update student photo
             studentPhoto.src = data.photo;
