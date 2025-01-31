@@ -179,7 +179,7 @@ function getRoomDetails(code) {
     if (roomType === "LH") {
         result += currentLanguage === 'en' ? ', Lecture Hall' : '، قاعة محاضرات';
     } else if (roomType === "CR") {
-        result += currentLanguage === 'en' ? ', Classroom' : '، فصل دراسي';
+        result += currentLanguage === 'en' ? ', Classroom' : '، فصل ';
     }
 
     if (floor) {
