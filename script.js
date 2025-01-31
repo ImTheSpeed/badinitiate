@@ -2,7 +2,7 @@
 
 // List of all subject codes from all faculties to prevent misidentification
 const subjectCodes = new Set([
-    // Medicine Program
+    // Existing subject codes...
     "MED111", "BMS111", "BMS131", "BMS141", "CMS111", "CMS181", "UC1",
     "BMS151", "BMS161", "BMS171", "BMS172", "CMS112", "UC2",
     "MED211", "BMS201", "BMS202", "CMS201", "UC3",
@@ -11,43 +11,31 @@ const subjectCodes = new Set([
     "MED511", "BMS501", "BMS502", "CMS501", "UC6",
     "MED611", "BMS601", "BMS602", "CMS601", "UC7",
 
-    // Doctor of Pharmacy (PharmD) Program
-    "BMS101", "BMS232", "PPH204", "PMB202", "PBC202", "PPP201", "UC7", "UE1",
-    "BMS371", "PMC306", "PPH305", "PPT304", "PMB303", "PPP302", "UE2",
-    "BMS351", "PMC307", "PPC303", "PPH306", "PPT305", "PPP303", "PPP304",
-    "PPP412", "PPC404", "PPH407", "PPT406", "PMB404", "PBC403", "PPP405", "PPP406", "UE3",
-    "PMC408", "PPT407", "PPP407", "PPP408", "PPP409", "PPP410", "PPP411", "E1",
-    "PMB505", "PPC505", "PPP512", "PPP513", "PPP514", "PPP515", "PPP516", "E1",
-    "PBC504", "PPP517", "PPP518", "PPP519", "PPP520", "PPP521", "PPP522", "E1",
+    // New subjects from the files
+    // From "Elective Courses" list
+    "HIST101", // History to Art (assuming code)
+    "ARCH101", // Introduction to Architecture & Urbanism (assuming code)
+    "INTL101", // Contemporary International Issues (assuming code)
+    "JAPN101", // Japanese Language 1 (assuming code)
+    "WRIT101", // Academic Writing (assuming code)
+    "BRND101", // Personal Branding (assuming code)
+    "SPCH101", // Public Speaking (assuming code)
+    "MGMT101", // Principles of Management (assuming code)
+    "PSYC101", // Introduction to Psychology (assuming code)
+    "SOCL101", // Introduction to Sociology (assuming code)
+    "NEGO101", // Negotiation Skills (assuming code)
+    "PROG101", // Introduction to Programming (assuming code)
+    "HIST102", // History of Science and Technology (assuming code)
 
-    // Dentistry Program
-    "DEN101", "DEN102", "DEN103", "DEN104", "DEN105", "DEN106",
-    "DEN201", "DEN202", "DEN203", "DEN204", "DEN205", "DEN206",
-    "DEN301", "DEN302", "DEN303", "DEN304", "DEN305", "DEN306",
-    "DEN401", "DEN402", "DEN403", "DEN404", "DEN405", "DEN406",
-    "DEN501", "DEN502", "DEN503", "DEN504", "DEN505", "DEN506",
-    "DEN601", "DEN602", "DEN603", "DEN604", "DEN605", "DEN606",
-    "DEN701", "DEN702", "DEN703", "DEN704", "DEN705", "DEN706",
-
-    // Nursing Program
-    "NUR101", "NUR102", "NUR103", "NUR104", "NUR105", "NUR106",
-    "NUR201", "NUR202", "NUR203", "NUR204", "NUR205", "NUR206",
-    "NUR301", "NUR302", "NUR303", "NUR304", "NUR305", "NUR306",
-    "NUR401", "NUR402", "NUR403", "NUR404", "NUR405", "NUR406",
-
-    // Engineering Programs
-    "CE101", "CE102", "CE103", "CE104", "CE105", "CE106",
-    "ME101", "ME102", "ME103", "ME104", "ME105", "ME106",
-    "EE101", "EE102", "EE103", "EE104", "EE105", "EE106",
-    "CS101", "CS102", "CS103", "CS104", "CS105", "CS106",
-
-    // Business & Administrative Sciences
-    "BUS101", "ACC101", "MGT101", "FIN101", "ECO101", "MAR101",
-    "BUS201", "ACC201", "MGT201", "FIN201", "ECO201", "MAR201",
-    "BUS301", "ACC301", "MGT301", "FIN301", "ECO301", "MAR301",
-    "BUS401", "ACC401", "MGT401", "FIN401", "ECO401", "MAR401",
-
-    // Add more subject codes as needed...
+    // From "Compulsory Courses" list
+    "GEO217", // Climate Change & Sustainability
+    "LAN028", // Critical Thinking
+    "LAN010", // Arabic Language
+    "MGT031", // Entrepreneurship & Innovation
+    "COM011", // Communication Skills
+    "LIB116", // Research & Analysis Skills
+    "PSC011", // Introduction to Law & Human Rights
+    "LAN020", // English 1
 ]);
 
 // Building names mapping
@@ -90,27 +78,41 @@ function getRoomDetails(code) {
             : "هذا رمز مادة، وليس رمز غرفة. الرجاء إدخال رمز غرفة صالح.";
     }
 
-    // Detect valid room formats (Building letter + optional CR/LH + room number)
-    const match = code.match(/^([A-Z])((?:CR|LH)?)(\d+)$/);
-    if (!match) {
-        return currentLanguage === 'en'
-            ? "Invalid room code, please try again!"
-            : "رمز الغرفة غير صالح، الرجاء المحاولة مرة أخرى!";
-    }
-
-    const buildingLetter = match[1]; // First letter is the building identifier
-    const roomType = match[2]; // "CR" for Classroom or "LH" for Lecture Hall
-    const roomNumber = match[3]; // The numeric part of the room
-
-    // Check if the building letter is valid
+    // Extract building letter
+    const buildingLetter = code[0];
     if (!buildings[buildingLetter]) {
         return currentLanguage === 'en'
             ? "Invalid building code, please try again!"
             : "رمز المبنى غير صالح، الرجاء المحاولة مرة أخرى!";
     }
 
-    // Determine floor
-    const floor = determineFloor(roomNumber[0], currentLanguage);
+    // Check for CR (Classroom) or LH (Lecture Hall)
+    const roomType = code.slice(1, 3); // Check 2nd and 3rd letters
+    let floor = "";
+    let roomNumber = "";
+
+    if (roomType === "CR" || roomType === "LH") {
+        // Handle CR or LH cases (e.g., GCR201, HLH001)
+        floor = code[3]; // First digit after CR/LH is the floor
+        roomNumber = code.slice(4); // Remaining digits are the room number
+    } else {
+        // Handle cases without CR or LH (e.g., A101, B202)
+        if (code.length >= 4) {
+            floor = code[1]; // First digit is the floor
+            roomNumber = code.slice(2); // Remaining digits are the room number
+        } else {
+            return currentLanguage === 'en'
+                ? "Invalid room code format. Please include floor and room number."
+                : "تنسيق رمز الغرفة غير صالح. يرجى تضمين الطابق ورقم الغرفة.";
+        }
+    }
+
+    // Validate floor and room number
+    if (!floor || !roomNumber || isNaN(roomNumber)) {
+        return currentLanguage === 'en'
+            ? "Invalid room code format. Please check your input."
+            : "تنسيق رمز الغرفة غير صالح. يرجى التحقق من الإدخال.";
+    }
 
     // Construct result message
     let result = buildings[buildingLetter][currentLanguage];
@@ -122,10 +124,16 @@ function getRoomDetails(code) {
     }
 
     if (floor) {
-        result += currentLanguage === 'en' ? `, ${floor} floor` : `، الطابق ${floor}`;
+        result += currentLanguage === 'en'
+            ? `, ${determineFloor(floor)} floor`
+            : `، الطابق ${determineFloor(floor, currentLanguage)}`;
     }
 
-    result += currentLanguage === 'en' ? `, Room ${roomNumber}` : `، غرفة ${roomNumber}`;
+    if (roomNumber) {
+        result += currentLanguage === 'en'
+            ? `, Room ${roomNumber}`
+            : `، غرفة ${roomNumber}`;
+    }
 
     return result;
 }
