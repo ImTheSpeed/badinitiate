@@ -128,7 +128,8 @@ function determineFloor(firstDigit, language = 'en') {
 
 // Function to check if the input is a valid room code
 function getRoomDetails(code) {
-    code = code.trim().toUpperCase(); // Normalize input
+    // Remove spaces, dashes, and any other non-alphanumeric characters, then convert to uppercase
+    code = code.replace(/[^a-zA-Z0-9]/g, '').trim().toUpperCase();
 
     // Check if the code is a subject code
     if (subjectCodes.has(code)) {
