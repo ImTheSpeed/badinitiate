@@ -97,6 +97,44 @@ const subjectCodes = new Set([
     "GEO217", "LAN028", "LAN010", "MGT031", "COM011", "LIB116", "PSC011", "LAN020"
 ]);
 
+
+
+// Special cases mapping
+const specialCases = {
+    'HLH001': { 
+        en: 'Auditorium 1',
+        ar: 'مدرج ١'
+    },
+    'J101': {
+        en: 'Auditorium 2',
+        ar: 'مدرج ٢'
+    },
+    'CRI122': {
+        en: 'Human Sciences Floor 1 Room 22',
+        ar: 'العلوم الإنسانية الطابق الأول غرفة ٢٢'
+    },
+    'CRI242': {
+        en: 'Human Sciences Floor 2 Room 42',
+        ar: 'العلوم الإنسانية الطابق الثاني غرفة ٤٢'
+    },
+    'CRI246': {
+        en: 'Human Sciences Floor 2 Room 46',
+        ar: 'العلوم الإنسانية الطابق الثاني غرفة ٤٦'
+    },
+    'GCR201': {
+        en: 'Pharmacy Floor 2 Room 01',
+        ar: 'الصيدلة الطابق الثاني غرفة ٠١'
+    },
+    'GCR301': {
+        en: 'Pharmacy Floor 3 Room 01',
+        ar: 'الصيدلة الطابق الثالث غرفة ٠١'
+    },
+    'GLH001': {
+        en: 'Pharmacy Lecture Hall Ground Floor Room 001',
+        ar: 'قاعة محاضرات الصيدلة الطابق الأرضي غرفة ٠٠١'
+    }
+};
+
 // Building names mapping
 const buildings = {
     'M': { en: 'Administrative building', ar: 'المبنى الإداري' },
@@ -126,10 +164,14 @@ function determineFloor(firstDigit, language = 'en') {
     return language === 'en' ? `${firstDigit}th` : `ال${firstDigit}`;
 }
 
-// Function to check if the input is a valid room code
 function getRoomDetails(code) {
     // Remove spaces, dashes, and any other non-alphanumeric characters, then convert to uppercase
     code = code.replace(/[^a-zA-Z0-9]/g, '').trim().toUpperCase();
+
+    // Check for special cases first
+    if (specialCases[code]) {
+        return specialCases[code][currentLanguage];
+    }
 
     // Check if the code is a subject code
     if (subjectCodes.has(code)) {
