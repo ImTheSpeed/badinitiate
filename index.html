@@ -204,6 +204,7 @@
         .map-container {
             margin-top: 1.5rem;
             width: 100%;
+            max-width: 800px;
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 2px 4px rgba(0,0,0,0.05);
@@ -212,7 +213,7 @@
         .map-container img {
             width: 100%;
             height: auto;
-            max-height: 60vh;
+            max-height: 400px;
             cursor: pointer;
         }
 
@@ -366,13 +367,14 @@
     </div>
 
     <div class="copyright">
-        &copy; © 2025 GUR By Speed. All Rights Reserved.
-This website is independently created and developed by me, a student at Galala University, without any interference, guidance, or supervision from university faculty, professors, or administration. It is built solely to benefit students and enhance their campus experience.
-
-"For students, by students—because who understands us better than we do?"
+        &copy; 2023 Galala University. All rights reserved.
     </div>
 
+    <!-- Link to the external JavaScript file -->
+    <script src="script.js"></script>
+
     <script>
+        // JavaScript for modal functionality
         function openModal() {
             document.getElementById('modal').style.display = 'flex';
         }
