@@ -257,25 +257,3 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
-
-document.addEventListener("DOMContentLoaded", function () {
-    const languageButton = document.getElementById("language-button");
-    const languageText = document.getElementById("language-text");
-    const flagIcon = document.getElementById("flag-icon");
-
-    let currentLanguage = "en"; // Default to English
-
-    languageButton.addEventListener("click", function () {
-        if (currentLanguage === "en") {
-            currentLanguage = "ar";
-            languageText.textContent = "EN";
-            flagIcon.src = "https://flagcdn.com/us.svg"; // Change to English flag or indicator
-            document.body.dir = "rtl"; // Right-to-left for Arabic
-        } else {
-            currentLanguage = "en";
-            languageText.textContent = "AR";
-            flagIcon.src = "https://flagcdn.com/eg.svg"; // Change to Arabic flag
-            document.body.dir = "ltr"; // Left-to-right for English
-        }
-    });
-});
